@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,8 +118,10 @@
         }
 
         /* =========================================================
-           ACTIVE SPACE BACKGROUND
-           Fixed behind every section, not just the hero.
+           LIVE UNIVERSE BACKGROUND
+           A fixed canvas behind every section. Stars drift, pulsars
+           sweep their beams, supernovae explode and fade, and black
+           holes cross the sky while you read.
            ========================================================= */
 
         #space-background {
@@ -141,6 +142,15 @@
                     transparent 38%
                 ),
                 #050711;
+        }
+
+        #cosmos {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .nebula {
@@ -180,72 +190,6 @@
             animation: nebulaDriftThree 44s ease-in-out infinite alternate;
         }
 
-        .star-layer {
-            position: absolute;
-            inset: -5%;
-            width: 110%;
-            height: 110%;
-            overflow: visible;
-            will-change: transform;
-        }
-
-        .star {
-            position: absolute;
-            display: block;
-            border-radius: 50%;
-            background: #eaf2ff;
-            will-change: transform, opacity;
-        }
-
-        .star.layer-one {
-            animation: starDriftOne 95s linear infinite;
-        }
-
-        .star.layer-two {
-            animation: starDriftTwo 145s linear infinite;
-        }
-
-        .star.layer-three {
-            animation: starDriftThree 210s linear infinite;
-        }
-
-        .star.twinkle {
-            animation:
-                starDriftOne 95s linear infinite,
-                twinkle 3.5s ease-in-out infinite alternate;
-        }
-
-        .shooting-star {
-            position: absolute;
-            width: 150px;
-            height: 2px;
-            opacity: 0;
-            border-radius: 50%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(181, 218, 255, 0.95),
-                white
-            );
-            box-shadow: 0 0 12px rgba(126, 190, 255, 0.55);
-            transform: rotate(-34deg);
-            animation: shootingStar 9s linear infinite;
-        }
-
-        .shooting-star:nth-of-type(2) {
-            top: 32%;
-            left: 68%;
-            animation-delay: 4s;
-            animation-duration: 12s;
-        }
-
-        .shooting-star:nth-of-type(3) {
-            top: 72%;
-            left: 15%;
-            animation-delay: 7s;
-            animation-duration: 14s;
-        }
-
         .space-vignette {
             position: absolute;
             inset: 0;
@@ -254,43 +198,6 @@
                 transparent 28%,
                 rgba(2, 4, 12, 0.30) 100%
             );
-        }
-
-        @keyframes starDriftOne {
-            from { transform: translate3d(0, 0, 0); }
-            to { transform: translate3d(-45px, 85px, 0); }
-        }
-
-        @keyframes starDriftTwo {
-            from { transform: translate3d(0, 0, 0); }
-            to { transform: translate3d(55px, -70px, 0); }
-        }
-
-        @keyframes starDriftThree {
-            from { transform: translate3d(0, 0, 0); }
-            to { transform: translate3d(-30px, -95px, 0); }
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.25; }
-            50% { opacity: 0.95; }
-            100% { opacity: 0.4; }
-        }
-
-        @keyframes shootingStar {
-            0% {
-                opacity: 0;
-                transform: translate3d(0, 0, 0) rotate(-34deg);
-            }
-            3% { opacity: 1; }
-            10% {
-                opacity: 0;
-                transform: translate3d(-320px, 210px, 0) rotate(-34deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate3d(-320px, 210px, 0) rotate(-34deg);
-            }
         }
 
         @keyframes nebulaDriftOne {
@@ -1433,51 +1340,37 @@
         }
 
         /* =========================================================
-           MODEL EXPLAINED
+           HOW IT WORKS
            ========================================================= */
 
-        .model-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 23px;
-        }
-
-        .model-panel {
+        .flow-panel {
             padding: 29px;
         }
 
-        .model-panel h3 {
+        .flow-panel h3 {
             margin: 0 0 15px;
             font-size: 1.3rem;
         }
 
-        .model-panel p {
+        .flow-panel > p {
+            max-width: 740px;
+            margin: 0;
             color: var(--muted);
             font-size: 0.9rem;
         }
 
-        .model-flow {
+        .flow-steps {
             display: grid;
-            gap: 0;
-            margin-top: 24px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 26px;
         }
 
-        .model-flow-step {
-            display: grid;
-            grid-template-columns: 40px 1fr;
-            gap: 13px;
-            position: relative;
-            padding-bottom: 21px;
-        }
-
-        .model-flow-step:not(:last-child)::after {
-            content: "";
-            position: absolute;
-            top: 38px;
-            bottom: 0;
-            left: 19px;
-            width: 1px;
-            background: rgba(135, 169, 255, 0.25);
+        .flow-step {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(12, 18, 35, 0.55);
         }
 
         .flow-number {
@@ -1493,45 +1386,16 @@
             font-weight: 800;
         }
 
-        .model-flow-step strong {
+        .flow-step strong {
             display: block;
-            margin: 3px 0 4px;
-            font-size: 0.9rem;
+            margin: 14px 0 5px;
+            font-size: 0.92rem;
         }
 
-        .model-flow-step p {
+        .flow-step p {
             margin: 0;
-            font-size: 0.82rem;
-        }
-
-        .tech-list {
-            display: grid;
-            gap: 12px;
-            margin-top: 22px;
-        }
-
-        .tech-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.84rem;
-        }
-
-        .tech-row:last-child {
-            padding-bottom: 0;
-            border-bottom: 0;
-        }
-
-        .tech-row span:first-child {
             color: var(--muted);
-        }
-
-        .tech-row span:last-child {
-            text-align: right;
-            font-weight: 650;
+            font-size: 0.82rem;
         }
 
         /* =========================================================
@@ -2049,6 +1913,10 @@
                 gap: 40px;
             }
 
+            .flow-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .hardware-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -2188,7 +2056,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .model-grid {
+            .flow-steps {
                 grid-template-columns: 1fr;
             }
 
@@ -2280,7 +2148,7 @@
             }
 
             .product-card,
-            .model-panel,
+            .flow-panel,
             .privacy-main,
             .release-panel {
                 padding: 22px;
@@ -2325,8 +2193,6 @@
                 transform: none;
             }
 
-            .star,
-            .shooting-star,
             .nebula {
                 animation: none !important;
             }
@@ -2335,19 +2201,13 @@
 </head>
 
 <body>
-    <!-- Global animated universe -->
+    <!-- Live universe: stars, pulsars, supernovae and black holes -->
     <div id="space-background" aria-hidden="true">
         <div class="nebula nebula-one"></div>
         <div class="nebula nebula-two"></div>
         <div class="nebula nebula-three"></div>
 
-        <div class="star-layer" id="stars-back"></div>
-        <div class="star-layer" id="stars-middle"></div>
-        <div class="star-layer" id="stars-front"></div>
-
-        <div class="shooting-star" style="top: 14%; left: 80%;"></div>
-        <div class="shooting-star"></div>
-        <div class="shooting-star"></div>
+        <canvas id="cosmos"></canvas>
 
         <div class="space-vignette"></div>
     </div>
@@ -2869,8 +2729,8 @@
                             <a class="button button-primary" href="#downloads">
                                 View release information
                             </a>
-                            <a class="button button-secondary" href="#model">
-                                Understand the model
+                            <a class="button button-secondary" href="#technology">
+                                See how it works
                             </a>
                         </div>
                     </div>
@@ -2903,7 +2763,7 @@
                         <h4>What still matters</h4>
                         <p>
                             Reliable startup, sensible resource usage,
-                            memory behaviour, model loading, installer
+                            memory behaviour, loading time, installer
                             integrity, and testing across different
                             computers.
                         </p>
@@ -2916,8 +2776,7 @@
                     <p>
                         On this site, Xtract identifies the current
                         Exitium Nano edition being prepared for release.
-                        It is a product-edition name, not the name of a
-                        separate foundation model. Its exact technical
+                        It is a product-edition name. Its exact technical
                         differences from Stable should be documented
                         through real release notes rather than invented
                         for marketing purposes.
@@ -2990,12 +2849,12 @@
 
                         <p>
                             Stable does not automatically mean that the
-                            AI model becomes smarter. Model quality depends
-                            on the selected model, its configuration,
-                            available hardware, and the task being performed.
+                            AI becomes smarter. Answer quality depends
+                            on the underlying configuration, available
+                            hardware, and the task being performed.
                             A stable edition can improve the surrounding
                             application without magically transforming
-                            the underlying model's capabilities.
+                            the underlying capabilities.
                         </p>
 
                         <div class="stable-principles">
@@ -3017,8 +2876,8 @@
                                     <strong>Installation confidence</strong>
                                     <span>
                                         Test clean installation, startup,
-                                        model availability, and expected
-                                        error handling.
+                                        required file availability, and
+                                        expected error handling.
                                     </span>
                                 </div>
                             </div>
@@ -3072,10 +2931,10 @@
                         Xtract is the current packaging and testing target.
                         Stable is the planned edition that places greater
                         emphasis on release confidence and dependable
-                        day-to-day behaviour. The final model choice,
-                        performance differences, feature list, and release
-                        date for Stable have not been confirmed here.
-                        Those details should be added when they are real.
+                        day-to-day behaviour. The performance differences,
+                        feature list, and release date for Stable have not
+                        been confirmed here. Those details should be added
+                        when they are real.
                     </p>
                 </div>
             </div>
@@ -3134,12 +2993,6 @@
                                         Planned
                                     </span>
                                 </td>
-                            </tr>
-
-                            <tr>
-                                <td>Model identity</td>
-                                <td>Current model configuration for the Xtract build</td>
-                                <td>Final model configuration not confirmed</td>
                             </tr>
 
                             <tr>
@@ -3218,7 +3071,7 @@
                         <p>
                             Ask questions, explore ideas, get explanations,
                             and work through everyday problems using the
-                            configured local model.
+                            configured local AI.
                         </p>
                     </article>
 
@@ -3250,10 +3103,10 @@
                         </div>
                         <h3>Image-related tasks</h3>
                         <p>
-                            The selected vision-capable model and supported
-                            interface may allow image input. Actual format
-                            support and behaviour must be confirmed for
-                            the published build.
+                            Image input may be available depending on the
+                            build and interface. Actual format support and
+                            behaviour must be confirmed for the published
+                            build.
                         </p>
                     </article>
 
@@ -3266,7 +3119,7 @@
                         </div>
                         <h3>Programming assistance</h3>
                         <p>
-                            Use the model to discuss code, understand
+                            Use the AI to discuss code, understand
                             errors, explore approaches, and draft
                             programming solutions. Always review generated
                             code before running it.
@@ -3320,12 +3173,12 @@
         <div class="section-divider"></div>
 
         <!-- =====================================================
-             MODEL AND TECHNICAL EXPLANATION
+             HOW IT WORKS
              ===================================================== -->
         <section class="section" id="technology">
             <div class="container">
                 <div class="section-heading reveal">
-                    <span class="eyebrow">Under the surface</span>
+                    <span class="eyebrow">How it works</span>
 
                     <h2>
                         How the <span class="gradient-text">AI engine</span>
@@ -3334,167 +3187,79 @@
 
                     <p>
                         Exitium is the desktop application around the
-                        AI experience. The language model is the component
+                        AI experience. The AI engine is the component
                         that generates answers. Separating those two
                         concepts makes the product easier to understand
                         and makes technical limitations easier to explain.
                     </p>
                 </div>
 
-                <div class="model-grid">
-                    <article class="model-panel panel reveal">
-                        <h3>From your message to an answer</h3>
-
-                        <p>
-                            In the current development architecture, the
-                            desktop interface communicates with an AI
-                            engine, which uses a local model-serving
-                            process to generate the response.
-                        </p>
-
-                        <div class="model-flow">
-                            <div class="model-flow-step">
-                                <span class="flow-number">01</span>
-                                <div>
-                                    <strong>You enter a message</strong>
-                                    <p>
-                                        The desktop interface collects
-                                        your prompt and any supported
-                                        attached content.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="model-flow-step">
-                                <span class="flow-number">02</span>
-                                <div>
-                                    <strong>Exitium prepares context</strong>
-                                    <p>
-                                        The application manages the
-                                        conversation and prepares the
-                                        information supplied to the model.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="model-flow-step">
-                                <span class="flow-number">03</span>
-                                <div>
-                                    <strong>The local engine generates</strong>
-                                    <p>
-                                        The model-serving process runs
-                                        inference using available system
-                                        resources and model configuration.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="model-flow-step">
-                                <span class="flow-number">04</span>
-                                <div>
-                                    <strong>The answer returns to the UI</strong>
-                                    <p>
-                                        Exitium displays the generated
-                                        response and may store conversation
-                                        information according to its
-                                        configured memory behaviour.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="model-panel panel reveal delay-one" id="model">
-                        <h3>The model behind the current build</h3>
-
-                        <p>
-                            The current development setup has used
-                            <strong>Qwen3-VL-2B-Instruct</strong>, a compact
-                            vision-language model. A model of this type
-                            is designed to process language and supported
-                            visual inputs, subject to its implementation
-                            and configuration.
-                        </p>
-
-                        <p>
-                            The model itself is not the entire application.
-                            Exitium supplies the desktop interface,
-                            conversation management, memory integration,
-                            and the surrounding workflow. The model
-                            supplies the generated intelligence.
-                        </p>
-
-                        <p>
-                            The current setup has used a quantized GGUF
-                            model with a separate multimodal projection
-                            file for visual processing. These are
-                            implementation details of the development
-                            build, not a guarantee that every future
-                            edition will use exactly the same files.
-                        </p>
-
-                        <div class="tech-list">
-                            <div class="tech-row">
-                                <span>Model used in current testing</span>
-                                <span>Qwen3-VL-2B-Instruct</span>
-                            </div>
-
-                            <div class="tech-row">
-                                <span>Model format in current setup</span>
-                                <span>GGUF, quantized</span>
-                            </div>
-
-                            <div class="tech-row">
-                                <span>Local inference runtime</span>
-                                <span>llama.cpp / model server</span>
-                            </div>
-
-                            <div class="tech-row">
-                                <span>Desktop platform focus</span>
-                                <span>Windows</span>
-                            </div>
-
-                            <div class="tech-row">
-                                <span>Final model for Stable</span>
-                                <span>Not confirmed</span>
-                            </div>
-                        </div>
-
-                        <p class="small">
-                            Model selection, file names, supported inputs,
-                            and runtime requirements should be verified
-                            against the exact installer before publication.
-                        </p>
-                    </article>
-                </div>
-
-                <div class="definition-panel panel reveal">
-                    <h3>Why use a compact model?</h3>
+                <article class="flow-panel panel reveal">
+                    <h3>From your message to an answer</h3>
 
                     <p>
-                        Smaller models generally require less memory and
-                        storage than much larger models, although actual
-                        performance depends on quantization, context
-                        length, runtime settings, and hardware. That makes
-                        compact models worth exploring for older or
-                        modest Windows PCs. The trade-off is that a small
-                        model may be less capable at difficult reasoning,
-                        long instructions, complex coding, and some
-                        image-understanding tasks than larger systems.
+                        In the current development architecture, the
+                        desktop interface communicates with a local AI
+                        engine running on the same computer, which
+                        generates the response.
                     </p>
-                </div>
+
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <span class="flow-number">01</span>
+                            <strong>You enter a message</strong>
+                            <p>
+                                The desktop interface collects your
+                                prompt and any supported attached content.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">02</span>
+                            <strong>Exitium prepares context</strong>
+                            <p>
+                                The application manages the conversation
+                                and prepares the information supplied to
+                                the engine.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">03</span>
+                            <strong>The local engine generates</strong>
+                            <p>
+                                The engine runs inference using available
+                                system resources and its configuration.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">04</span>
+                            <strong>The answer returns to the UI</strong>
+                            <p>
+                                Exitium displays the generated response
+                                and may store conversation information
+                                according to its configured memory
+                                behaviour.
+                            </p>
+                        </div>
+                    </div>
+                </article>
 
                 <div class="definition-panel panel reveal">
-                    <h3>What does “2B” mean?</h3>
+                    <h3>Why use a compact AI?</h3>
 
                     <p>
-                        In a model name, “2B” typically refers to
-                        approximately two billion model parameters.
-                        It does not mean the model needs exactly two
-                        gigabytes of RAM. Actual memory usage also
-                        depends on model weights, quantization, context
-                        cache, runtime overhead, and other application
-                        components.
+                        Compact AI systems generally require less memory
+                        and storage than much larger ones, although
+                        actual performance depends on configuration,
+                        context length, runtime settings, and hardware.
+                        That makes them worth exploring for older or
+                        modest Windows PCs. The trade-off is that a
+                        compact system may be less capable at difficult
+                        reasoning, long instructions, complex coding,
+                        and some image-understanding tasks than larger
+                        cloud systems.
                     </p>
                 </div>
 
@@ -3503,7 +3268,7 @@
 
                     <p>
                         Not automatically. Local inference can work
-                        offline once the model files are present, but
+                        offline once the required files are present, but
                         update checks, downloads, and optional web search
                         need a network connection. The application should
                         make those boundaries clear and avoid describing
@@ -3531,7 +3296,8 @@
                         Exitium Nano is aimed at making local AI more
                         accessible. That does not mean every computer
                         will deliver the same speed or support every
-                        capability. The model and the machine both matter.
+                        capability. The software and the machine both
+                        matter.
                     </p>
                 </div>
 
@@ -3550,7 +3316,7 @@
                         <span class="eyebrow">Memory</span>
                         <strong class="hardware-value">RAM</strong>
                         <p>
-                            System memory must accommodate the model,
+                            System memory must accommodate the AI,
                             context, runtime, and other applications.
                             More available memory can improve headroom.
                         </p>
@@ -3560,9 +3326,9 @@
                         <span class="eyebrow">Storage</span>
                         <strong class="hardware-value">SSD</strong>
                         <p>
-                            Faster storage can improve model loading.
+                            Faster storage can improve loading time.
                             Sufficient free space is still required
-                            for the model and application files.
+                            for the application files.
                         </p>
                     </article>
 
@@ -3599,8 +3365,8 @@
 
                     <p>
                         Local conversation can operate without internet
-                        when the required application and model files
-                        are installed and available. Downloading the
+                        when the required application files are installed
+                        and available. Downloading the
                         application, retrieving updates, and using
                         online search still require connectivity.
                         Offline operation should be tested after a
@@ -3651,9 +3417,9 @@
                             <div class="privacy-item">
                                 <span class="symbol">✓</span>
                                 <div>
-                                    <strong>Local model inference</strong>
+                                    <strong>Local inference</strong>
                                     <p>
-                                        The configured local model can
+                                        The configured local AI can
                                         generate supported responses
                                         on the computer.
                                     </p>
@@ -3912,7 +3678,7 @@
                                 <p>
                                     Prepare the current target installer,
                                     verify required files, and test startup
-                                    and model loading.
+                                    and loading.
                                 </p>
                             </div>
                         </article>
@@ -4054,15 +3820,15 @@
                         </details>
 
                         <details class="faq-item">
-                            <summary>Are Xtract and Stable different AI models?</summary>
+                            <summary>How are Xtract and Stable different?</summary>
                             <div class="faq-answer">
                                 <p>
-                                    They are edition names, not proof of
-                                    different underlying models. The current
-                                    development setup has used
-                                    Qwen3-VL-2B-Instruct. The final model
-                                    configuration for Stable has not
-                                    been confirmed.
+                                    They are separate editions with
+                                    different development goals. Xtract
+                                    is the current packaged testing target.
+                                    Stable is a planned edition focused
+                                    on release confidence. Final technical
+                                    differences have not been confirmed.
                                 </p>
                             </div>
                         </details>
@@ -4071,12 +3837,12 @@
                             <summary>Does Exitium work offline?</summary>
                             <div class="faq-answer">
                                 <p>
-                                    Supported local model conversations
+                                    Supported local conversations
                                     can work offline when the required
-                                    application and model files are
-                                    installed. Web search, downloads,
-                                    and online update checks need an
-                                    internet connection.
+                                    application files are installed.
+                                    Web search, downloads, and online
+                                    update checks need an internet
+                                    connection.
                                 </p>
                             </div>
                         </details>
@@ -4098,9 +3864,7 @@
                             <summary>Can I upload images?</summary>
                             <div class="faq-answer">
                                 <p>
-                                    The current development setup has used
-                                    a vision-language model. Image input
-                                    still depends on the exact build,
+                                    Image input depends on the exact build,
                                     supported formats, and interface.
                                     Check the release notes for confirmed
                                     support.
@@ -4112,9 +3876,9 @@
                             <summary>Does Exitium need a powerful GPU?</summary>
                             <div class="faq-answer">
                                 <p>
-                                    A supported local model can run through
-                                    CPU inference, depending on the runtime
-                                    and configuration. A more capable
+                                    Local AI can run through CPU inference,
+                                    depending on the runtime and
+                                    configuration. A more capable
                                     processor and sufficient memory can
                                     improve the experience. Performance
                                     is not guaranteed to be identical
@@ -4182,13 +3946,13 @@
                             <div class="faq-answer">
                                 <p>
                                     Not necessarily. Compact local
-                                    models have practical resource
-                                    advantages, but they can have
+                                    AI has practical resource
+                                    advantages, but it can have
                                     limitations in complex reasoning,
                                     coding, and other demanding tasks.
                                     Exitium is about providing a useful
                                     local option, not pretending that
-                                    every model is interchangeable.
+                                    every system is interchangeable.
                                 </p>
                             </div>
                         </details>
@@ -4329,7 +4093,7 @@
 
                     <p class="footer-description">
                         An independent local-first AI project exploring
-                        practical desktop intelligence, compact models,
+                        practical desktop intelligence, compact AI,
                         and greater control over the computing experience.
                     </p>
 
@@ -4360,7 +4124,6 @@
                     <a href="#privacy">Privacy summary</a>
                     <a href="#downloads">Release centre</a>
                     <a href="#faq">Frequently asked questions</a>
-                    <a href="#model">Model details</a>
                 </div>
             </div>
 
@@ -4382,96 +4145,749 @@
 
     <script>
         /* =========================================================
-           GLOBAL STARFIELD GENERATOR
-           The stars sit behind the entire page and keep moving
-           as the visitor scrolls.
+           LIVE UNIVERSE
+           A single fixed canvas behind the whole page.
+
+           - Stars drift at different depths and shift as you scroll
+           - Pulsars spin and sweep lighthouse beams
+           - Supernovae swell, detonate, throw out a shockwave and
+             debris, and sometimes leave a pulsar behind
+           - Black holes cross the sky with a glowing accretion disk,
+             and bend the light of the stars behind them
+           - Occasional meteors streak past
            ========================================================= */
 
         (() => {
-            const reducedMotion = window.matchMedia(
+            const canvas = document.getElementById("cosmos");
+            if (!canvas) return;
+
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+
+            const reduced = window.matchMedia(
                 "(prefers-reduced-motion: reduce)"
             ).matches;
 
-            const layers = [
-                {
-                    id: "stars-back",
-                    count: 75,
-                    minSize: 1,
-                    maxSize: 1.6,
-                    minOpacity: 0.18,
-                    maxOpacity: 0.48,
-                    className: "layer-three"
-                },
-                {
-                    id: "stars-middle",
-                    count: 100,
-                    minSize: 1,
-                    maxSize: 2,
-                    minOpacity: 0.25,
-                    maxOpacity: 0.68,
-                    className: "layer-two"
-                },
-                {
-                    id: "stars-front",
-                    count: 48,
-                    minSize: 1.2,
-                    maxSize: 2.5,
-                    minOpacity: 0.32,
-                    maxOpacity: 0.85,
-                    className: "layer-one"
-                }
+            const TAU = Math.PI * 2;
+            const rand = (a, b) => Math.random() * (b - a) + a;
+            const pick = list => list[Math.floor(Math.random() * list.length)];
+            const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+            const mod = (v, m) => ((v % m) + m) % m;
+
+            let W = 0;
+            let H = 0;
+            let dpr = 1;
+            let clock = 0;
+            let scrollSmooth = window.scrollY || 0;
+            let lastScrollSpawn = scrollSmooth;
+            let lowPower = false;
+            let frameAvg = 0.016;
+
+            /* ---------- Pre-rendered glow sprites (cheap to draw) ---------- */
+
+            function makeGlow(r, g, b) {
+                const c = document.createElement("canvas");
+                c.width = c.height = 128;
+                const x = c.getContext("2d");
+                const gr = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+                gr.addColorStop(0, "rgba(255,255,255,1)");
+                gr.addColorStop(0.14, `rgba(${r},${g},${b},0.7)`);
+                gr.addColorStop(0.45, `rgba(${r},${g},${b},0.16)`);
+                gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+                x.fillStyle = gr;
+                x.fillRect(0, 0, 128, 128);
+                return c;
+            }
+
+            function makeCloud(r, g, b) {
+                const c = document.createElement("canvas");
+                c.width = c.height = 128;
+                const x = c.getContext("2d");
+                const gr = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+                gr.addColorStop(0, `rgba(${r},${g},${b},0.55)`);
+                gr.addColorStop(0.55, `rgba(${r},${g},${b},0.22)`);
+                gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+                x.fillStyle = gr;
+                x.fillRect(0, 0, 128, 128);
+                return c;
+            }
+
+            const SPR = {
+                white: makeGlow(255, 255, 255),
+                blue: makeGlow(140, 180, 255),
+                cyan: makeGlow(130, 230, 255),
+                orange: makeGlow(255, 150, 70),
+                red: makeGlow(255, 95, 60),
+                magenta: makeGlow(225, 110, 255),
+                gold: makeGlow(255, 214, 140)
+            };
+
+            const CLOUD = {
+                magenta: makeCloud(225, 110, 255),
+                orange: makeCloud(255, 140, 70),
+                cyan: makeCloud(110, 210, 255),
+                blue: makeCloud(110, 140, 255)
+            };
+
+            function glow(sprite, x, y, size, alpha) {
+                if (alpha <= 0.003 || size < 1) return;
+                ctx.globalAlpha = Math.min(1, alpha);
+                ctx.drawImage(sprite, x - size / 2, y - size / 2, size, size);
+            }
+
+            /* ---------- Scene state ---------- */
+
+            const STAR_COLORS = ["#ffffff", "#dfe9ff", "#bdd0ff", "#fff0d6", "#ffd9b0"];
+
+            const PALETTES = [
+                { ring: "140,200,255", core: "blue", afterglow: "cyan", cloud: "magenta", sparks: ["white", "cyan", "blue"] },
+                { ring: "255,175,110", core: "gold", afterglow: "orange", cloud: "orange", sparks: ["gold", "orange", "white"] },
+                { ring: "200,150,255", core: "magenta", afterglow: "blue", cloud: "cyan", sparks: ["magenta", "white", "blue"] }
             ];
 
-            function randomBetween(min, max) {
-                return Math.random() * (max - min) + min;
+            const PRE_FLARE = 1.5;
+
+            let stars = [];
+            let pulsars = [];
+            let supernovae = [];
+            let blackHoles = [];
+            let meteors = [];
+
+            let nextSupernova = 2.5;
+            let nextBlackHole = 20;
+            let nextMeteor = 4;
+
+            /* ---------- Stars ---------- */
+
+            function buildStars() {
+                const factor = lowPower ? 0.6 : 1;
+                const count = Math.round(clamp((W * H) / 5200, 90, 290) * factor);
+                stars = [];
+
+                for (let i = 0; i < count; i++) {
+                    const depth = Math.pow(Math.random(), 1.6) * 0.85 + 0.15;
+                    const big = Math.random() < 0.035;
+
+                    stars.push({
+                        nx: Math.random(),
+                        ny: Math.random(),
+                        depth,
+                        big,
+                        size: big ? rand(2.0, 2.9) : rand(0.7, 1.0) + depth * rand(0.4, 1.2),
+                        alpha: big ? rand(0.8, 1) : rand(0.25, 0.75) * (0.5 + depth * 0.5),
+                        tw: rand(0.6, 2.6),
+                        ph: rand(0, TAU),
+                        twAmt: Math.random() < 0.4 ? rand(0.3, 0.6) : rand(0.05, 0.2),
+                        color: pick(STAR_COLORS)
+                    });
+                }
             }
 
-            function createStars(layerConfig) {
-                const layer = document.getElementById(layerConfig.id);
+            function drawStars() {
+                const flowX = -3.2;
+                const flowY = 5.0;
+                const scrollShift = scrollSmooth * 0.2;
 
-                if (!layer) return;
+                ctx.globalCompositeOperation = "source-over";
 
-                const fragment = document.createDocumentFragment();
+                for (const s of stars) {
+                    let x = mod(s.nx * W + flowX * s.depth * clock, W);
+                    let y = mod(s.ny * H + flowY * s.depth * clock - scrollShift * s.depth, H);
+                    let swallowed = false;
 
-                for (let i = 0; i < layerConfig.count; i++) {
-                    const star = document.createElement("span");
+                    // Gravitational lensing: light bends around black holes
+                    for (const bh of blackHoles) {
+                        const dx = x - bh.sx;
+                        const dy = y - bh.sy;
+                        const reach = bh.rs * 9;
+                        const d2 = dx * dx + dy * dy;
 
-                    const size = randomBetween(
-                        layerConfig.minSize,
-                        layerConfig.maxSize
-                    );
+                        if (d2 < reach * reach) {
+                            const d = Math.sqrt(d2) || 0.001;
 
-                    const opacity = randomBetween(
-                        layerConfig.minOpacity,
-                        layerConfig.maxOpacity
-                    );
+                            if (d < bh.rs * 1.02) {
+                                swallowed = true;
+                                break;
+                            }
 
-                    star.className = "star " + layerConfig.className;
-
-                    if (Math.random() > 0.58) {
-                        star.classList.add("twinkle");
+                            const bend = (bh.rs * bh.rs * 2.2 / d) * (1 - d / reach);
+                            x = bh.sx + (dx / d) * (d + bend);
+                            y = bh.sy + (dy / d) * (d + bend);
+                        }
                     }
 
-                    star.style.left = randomBetween(0, 100) + "%";
-                    star.style.top = randomBetween(0, 100) + "%";
-                    star.style.width = size + "px";
-                    star.style.height = size + "px";
-                    star.style.opacity = opacity;
+                    if (swallowed) continue;
 
-                    if (reducedMotion) {
-                        star.style.animation = "none";
+                    const a = s.alpha * (1 - s.twAmt + s.twAmt * Math.sin(clock * s.tw + s.ph));
+
+                    if (s.big) {
+                        glow(SPR.blue, x, y, s.size * 9, a * 0.32);
+                    }
+
+                    ctx.globalAlpha = a;
+                    ctx.fillStyle = s.color;
+
+                    if (s.size < 1.5) {
+                        ctx.fillRect(x - s.size / 2, y - s.size / 2, s.size, s.size);
                     } else {
-                        star.style.animationDelay =
-                            randomBetween(-100, 0) + "s";
+                        ctx.beginPath();
+                        ctx.arc(x, y, s.size / 2, 0, TAU);
+                        ctx.fill();
                     }
-
-                    fragment.appendChild(star);
                 }
 
-                layer.appendChild(fragment);
+                ctx.globalAlpha = 1;
             }
 
-            layers.forEach(createStars);
+            /* ---------- Pulsars ---------- */
+
+            function makePulsar(x, y, born) {
+                const len = rand(80, 150);
+                const grad = ctx.createLinearGradient(0, 0, len, 0);
+                grad.addColorStop(0, "rgba(210,232,255,0.95)");
+                grad.addColorStop(1, "rgba(150,200,255,0)");
+
+                return {
+                    x,
+                    y,
+                    vx: rand(-2.5, 2.5),
+                    vy: rand(-2.5, 2.5),
+                    ang: rand(0, TAU),
+                    spin: rand(1.6, 4.2) * (Math.random() < 0.5 ? 1 : -1),
+                    len,
+                    grad,
+                    glow: pick(["blue", "cyan", "magenta"]),
+                    born
+                };
+            }
+
+            function addPulsar(p) {
+                pulsars.push(p);
+                if (pulsars.length > 6) pulsars.shift();
+            }
+
+            function drawPulsar(p) {
+                const x = p.x;
+                const y = p.y - scrollSmooth * 0.05;
+                const fade = clamp((clock - p.born) / 3.5, 0, 1);
+                const f = Math.pow(Math.abs(Math.cos(p.ang)), 18);
+
+                glow(SPR[p.glow], x, y, 26 + 34 * f, (0.5 + 0.5 * f) * fade);
+                glow(SPR.white, x, y, 7 + 6 * f, fade);
+
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(p.ang);
+                ctx.fillStyle = p.grad;
+
+                for (let side = 0; side < 2; side++) {
+                    ctx.globalAlpha = (0.35 + 0.4 * f) * fade;
+                    ctx.fillRect(0, -0.8, p.len, 1.6);
+
+                    ctx.globalAlpha = (0.08 + 0.1 * f) * fade;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(p.len, -6);
+                    ctx.lineTo(p.len, 6);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    ctx.rotate(Math.PI);
+                }
+
+                ctx.restore();
+                ctx.globalAlpha = 1;
+            }
+
+            /* ---------- Supernovae ---------- */
+
+            function spawnSupernova() {
+                const pal = pick(PALETTES);
+                const maxR = clamp(Math.min(W, H) * rand(0.22, 0.36), 130, 300);
+                const count = lowPower ? 32 : 64;
+                const parts = [];
+
+                for (let i = 0; i < count; i++) {
+                    parts.push({
+                        a: rand(0, TAU),
+                        v: 0.55 * maxR * rand(0.3, 1.05),
+                        size: rand(0.8, 2.2),
+                        life: rand(0.55, 1),
+                        col: pick(pal.sparks)
+                    });
+                }
+
+                supernovae.push({
+                    x: rand(0.08, 0.92) * W,
+                    y: rand(0.14, 0.9) * H,
+                    t: 0,
+                    dur: rand(8.5, 11),
+                    maxR,
+                    pal,
+                    parts,
+                    leavesPulsar: Math.random() < 0.45
+                });
+            }
+
+            function drawSupernova(sn) {
+                const x = sn.x;
+                const y = sn.y - scrollSmooth * 0.05;
+                const pal = sn.pal;
+
+                // Phase one: the dying star swells and brightens
+                if (sn.t < PRE_FLARE) {
+                    const k = sn.t / PRE_FLARE;
+                    glow(SPR[pal.core], x, y, 8 + 46 * k * k * k, 0.25 + 0.7 * k * k);
+                    glow(SPR.white, x, y, 3 + 8 * k * k, k);
+                    return;
+                }
+
+                // Phase two: detonation
+                const tb = sn.t - PRE_FLARE;
+                const flashSize = 40 + 260 * (1 - Math.exp(-3 * tb));
+                const R = sn.maxR * (1 - Math.exp(-0.5 * tb));
+
+                glow(SPR.white, x, y, flashSize * 0.55, 0.95 * Math.exp(-2.2 * tb));
+                glow(SPR[pal.core], x, y, flashSize, 0.85 * Math.exp(-1.4 * tb));
+                glow(SPR[pal.afterglow], x, y, 54, 0.45 * Math.exp(-0.28 * tb));
+
+                // Glowing gas cloud of the remnant
+                const cloudAlpha = Math.min(1, tb / 1.5) * 0.14 * Math.exp(-0.22 * tb);
+                glow(CLOUD[pal.cloud], x, y, R * 2.1, cloudAlpha);
+
+                // Expanding shockwave
+                if (R > 3) {
+                    const ringAlpha = 0.42 * Math.exp(-0.32 * tb);
+                    const thickness = Math.max(12, R * 0.18);
+                    const inner = Math.max(0, R - thickness);
+                    const g = ctx.createRadialGradient(x, y, inner, x, y, R);
+
+                    g.addColorStop(0, `rgba(${pal.ring},0)`);
+                    g.addColorStop(0.8, `rgba(${pal.ring},${ringAlpha.toFixed(3)})`);
+                    g.addColorStop(1, `rgba(${pal.ring},0)`);
+
+                    ctx.globalAlpha = 1;
+                    ctx.fillStyle = g;
+                    ctx.beginPath();
+                    ctx.arc(x, y, R, 0, TAU);
+                    ctx.fill();
+
+                    // Fainter inner reverse shock
+                    const R2 = R * 0.66;
+                    const inner2 = Math.max(0, R2 - Math.max(8, R2 * 0.14));
+                    const g2 = ctx.createRadialGradient(x, y, inner2, x, y, R2);
+
+                    g2.addColorStop(0, "rgba(255,255,255,0)");
+                    g2.addColorStop(0.8, `rgba(255,255,255,${(ringAlpha * 0.35).toFixed(3)})`);
+                    g2.addColorStop(1, "rgba(255,255,255,0)");
+
+                    ctx.fillStyle = g2;
+                    ctx.beginPath();
+                    ctx.arc(x, y, R2, 0, TAU);
+                    ctx.fill();
+                }
+
+                // Flying debris
+                for (let i = 0; i < sn.parts.length; i++) {
+                    if (lowPower && (i & 1)) continue;
+
+                    const p = sn.parts[i];
+                    const dist = p.v * (1 - Math.exp(-0.55 * tb)) / 0.55;
+                    const alpha = Math.max(0, 1 - tb / (sn.dur * 0.85 * p.life));
+
+                    if (alpha <= 0) continue;
+
+                    glow(
+                        SPR[p.col],
+                        x + Math.cos(p.a) * dist,
+                        y + Math.sin(p.a) * dist,
+                        p.size * 7,
+                        alpha * 0.8
+                    );
+                }
+
+                ctx.globalAlpha = 1;
+            }
+
+            /* ---------- Black holes ---------- */
+
+            function spawnBlackHole(entering) {
+                const rs = clamp(Math.min(W, H) * 0.024, 10, 26) * rand(0.85, 1.25);
+                const dir = Math.random() < 0.5 ? 1 : -1;
+                const speed = rand(14, 22) * (W < 700 ? 0.7 : 1);
+                const margin = rs * 6;
+
+                const bh = {
+                    rs,
+                    x: entering ? (dir > 0 ? -margin : W + margin) : rand(0.55, 0.85) * W,
+                    y: rand(0.15, 0.8) * H,
+                    vx: dir * speed,
+                    vy: rand(-4, 4),
+                    margin,
+                    tilt: rand(-0.4, 0.4),
+                    incl: rand(0.2, 0.32),
+                    sx: 0,
+                    sy: 0,
+                    disk: [],
+                    ring: [],
+                    bands: [
+                        { r: rs * 1.9, color: "rgba(255,238,200,0.10)" },
+                        { r: rs * 2.4, color: "rgba(255,200,130,0.09)" },
+                        { r: rs * 3.0, color: "rgba(255,150,80,0.08)" },
+                        { r: rs * 3.7, color: "rgba(230,100,60,0.06)" }
+                    ]
+                };
+
+                for (let i = 0; i < 70; i++) {
+                    const r = rs * rand(1.7, 4.2);
+                    const hot = 1 - (r / rs - 1.7) / 2.5;
+
+                    bh.disk.push({
+                        r,
+                        th: rand(0, TAU),
+                        w: 4.4 * Math.pow(rs / r, 1.5),
+                        size: rs * rand(0.22, 0.45),
+                        bright: rand(0.3, 0.7),
+                        sprite: hot > 0.7 ? SPR.gold : hot > 0.4 ? SPR.orange : SPR.red
+                    });
+                }
+
+                for (let i = 0; i < 28; i++) {
+                    bh.ring.push({
+                        r: rs * rand(1.15, 1.5),
+                        th: rand(0, TAU),
+                        w: 3.5,
+                        size: rs * rand(0.16, 0.3),
+                        bright: rand(0.4, 0.8)
+                    });
+                }
+
+                bh.sx = bh.x;
+                bh.sy = bh.y;
+                blackHoles.push(bh);
+            }
+
+            function drawDiskParticles(bh, front) {
+                const cs = Math.cos(bh.tilt);
+                const sn = Math.sin(bh.tilt);
+
+                for (const p of bh.disk) {
+                    const s = Math.sin(p.th);
+                    if ((s >= 0) !== front) continue;
+
+                    const lx = Math.cos(p.th) * p.r;
+                    const ly = s * p.r * bh.incl;
+                    const px = bh.sx + lx * cs - ly * sn;
+                    const py = bh.sy + lx * sn + ly * cs;
+
+                    // Doppler beaming: one side of the disk is brighter
+                    const doppler = 0.45 + 0.55 * (0.5 + 0.5 * Math.cos(p.th));
+                    glow(p.sprite, px, py, p.size, p.bright * doppler);
+                }
+            }
+
+            function drawBlackHole(bh) {
+                const x = bh.sx;
+                const y = bh.sy;
+                const rs = bh.rs;
+
+                ctx.globalCompositeOperation = "lighter";
+
+                glow(SPR.orange, x, y, rs * 11, 0.14);
+                glow(SPR.red, x, y, rs * 6, 0.12);
+
+                ctx.globalAlpha = 1;
+                ctx.lineWidth = rs * 0.6;
+
+                // Far side of the accretion disk
+                if (!lowPower) {
+                    for (const band of bh.bands) {
+                        ctx.strokeStyle = band.color;
+                        ctx.beginPath();
+                        ctx.ellipse(x, y, band.r, band.r * bh.incl, bh.tilt, Math.PI, TAU);
+                        ctx.stroke();
+                    }
+                }
+
+                drawDiskParticles(bh, false);
+
+                // Light from the far side bent over the top of the hole
+                ctx.globalAlpha = 1;
+                ctx.lineWidth = rs * 0.34;
+                ctx.strokeStyle = "rgba(255,196,130,0.28)";
+                ctx.beginPath();
+                ctx.arc(x, y, rs * 1.34, bh.tilt + Math.PI, bh.tilt + TAU);
+                ctx.stroke();
+
+                ctx.strokeStyle = "rgba(255,170,100,0.10)";
+                ctx.beginPath();
+                ctx.arc(x, y, rs * 1.34, bh.tilt, bh.tilt + Math.PI);
+                ctx.stroke();
+
+                // The event horizon
+                ctx.globalCompositeOperation = "source-over";
+                const g = ctx.createRadialGradient(x, y, rs * 0.55, x, y, rs * 1.05);
+                g.addColorStop(0, "rgba(0,0,0,1)");
+                g.addColorStop(0.82, "rgba(0,0,0,1)");
+                g.addColorStop(1, "rgba(0,0,0,0)");
+                ctx.fillStyle = g;
+                ctx.beginPath();
+                ctx.arc(x, y, rs * 1.05, 0, TAU);
+                ctx.fill();
+
+                ctx.globalCompositeOperation = "lighter";
+
+                // Photon ring
+                ctx.lineWidth = 1.3;
+                ctx.strokeStyle = "rgba(255,232,196,0.7)";
+                ctx.beginPath();
+                ctx.arc(x, y, rs * 1.08, 0, TAU);
+                ctx.stroke();
+
+                ctx.lineWidth = 5;
+                ctx.strokeStyle = "rgba(255,190,120,0.12)";
+                ctx.beginPath();
+                ctx.arc(x, y, rs * 1.1, 0, TAU);
+                ctx.stroke();
+
+                // Lensed ring particles hugging the hole
+                for (const p of bh.ring) {
+                    const px = x + Math.cos(p.th) * p.r;
+                    const py = y + Math.sin(p.th) * p.r;
+                    const doppler = 0.45 + 0.55 * (0.5 + 0.5 * Math.cos(p.th));
+                    glow(SPR.gold, px, py, p.size, p.bright * doppler);
+                }
+
+                // Near side of the accretion disk passes in front
+                ctx.globalAlpha = 1;
+                ctx.lineWidth = rs * 0.6;
+
+                if (!lowPower) {
+                    for (const band of bh.bands) {
+                        ctx.strokeStyle = band.color;
+                        ctx.beginPath();
+                        ctx.ellipse(x, y, band.r, band.r * bh.incl, bh.tilt, 0, Math.PI);
+                        ctx.stroke();
+                    }
+                }
+
+                drawDiskParticles(bh, true);
+
+                ctx.globalCompositeOperation = "source-over";
+                ctx.globalAlpha = 1;
+            }
+
+            /* ---------- Meteors ---------- */
+
+            function spawnMeteor() {
+                const angle = rand(0.45, 0.85);
+                const dir = Math.random() < 0.5 ? 1 : -1;
+                const speed = rand(650, 950);
+
+                meteors.push({
+                    x: rand(0.1, 0.95) * W,
+                    y: rand(0, 0.45) * H,
+                    vx: Math.cos(angle) * dir * speed,
+                    vy: Math.sin(angle) * speed,
+                    life: 0,
+                    max: rand(0.7, 1.1),
+                    len: rand(90, 170)
+                });
+            }
+
+            function drawMeteor(m) {
+                const speed = Math.hypot(m.vx, m.vy) || 1;
+                const tx = m.x - (m.vx / speed) * m.len;
+                const ty = m.y - (m.vy / speed) * m.len;
+                const a = Math.sin(Math.PI * clamp(m.life / m.max, 0, 1));
+
+                const g = ctx.createLinearGradient(tx, ty, m.x, m.y);
+                g.addColorStop(0, "rgba(190,225,255,0)");
+                g.addColorStop(1, "rgba(255,255,255,1)");
+
+                ctx.globalAlpha = a;
+                ctx.strokeStyle = g;
+                ctx.lineWidth = 1.6;
+                ctx.beginPath();
+                ctx.moveTo(tx, ty);
+                ctx.lineTo(m.x, m.y);
+                ctx.stroke();
+
+                glow(SPR.white, m.x, m.y, 10, a);
+                ctx.globalAlpha = 1;
+            }
+
+            /* ---------- Simulation step ---------- */
+
+            function update(dt) {
+                clock += dt;
+                scrollSmooth += (window.scrollY - scrollSmooth) * Math.min(1, dt * 6);
+
+                // New supernovae: on a timer, and as the reader scrolls
+                if (clock >= nextSupernova && supernovae.length < 3) {
+                    spawnSupernova();
+                    nextSupernova = clock + rand(5, 11);
+                }
+
+                if (Math.abs(window.scrollY - lastScrollSpawn) > 1100 && supernovae.length < 3) {
+                    spawnSupernova();
+                    lastScrollSpawn = window.scrollY;
+                    nextSupernova = Math.max(nextSupernova, clock + 3);
+                }
+
+                for (let i = supernovae.length - 1; i >= 0; i--) {
+                    const sn = supernovae[i];
+                    sn.t += dt;
+
+                    if (sn.t > PRE_FLARE + sn.dur) {
+                        if (sn.leavesPulsar) {
+                            addPulsar(makePulsar(sn.x, sn.y, clock));
+                        }
+                        supernovae.splice(i, 1);
+                    }
+                }
+
+                for (const p of pulsars) {
+                    p.ang += p.spin * dt;
+                    p.x += p.vx * dt;
+                    p.y += p.vy * dt;
+
+                    if (p.x < -150) p.x = W + 150;
+                    if (p.x > W + 150) p.x = -150;
+                    if (p.y < -150) p.y = H + 150;
+                    if (p.y > H + 150) p.y = -150;
+                }
+
+                // Black holes drift across the sky, then a new one arrives
+                if (blackHoles.length < 2 && clock >= nextBlackHole) {
+                    spawnBlackHole(true);
+                    nextBlackHole = clock + rand(22, 45);
+                }
+
+                for (let i = blackHoles.length - 1; i >= 0; i--) {
+                    const bh = blackHoles[i];
+
+                    bh.x += bh.vx * dt;
+                    bh.y += bh.vy * dt;
+                    bh.sx = bh.x;
+                    bh.sy = bh.y - scrollSmooth * 0.05;
+
+                    for (const p of bh.disk) p.th += p.w * dt;
+                    for (const p of bh.ring) p.th += p.w * dt;
+
+                    if (bh.x < -bh.margin * 1.5 || bh.x > W + bh.margin * 1.5) {
+                        blackHoles.splice(i, 1);
+                        nextBlackHole = Math.min(nextBlackHole, clock + rand(8, 18));
+                    }
+                }
+
+                if (clock >= nextMeteor) {
+                    spawnMeteor();
+                    nextMeteor = clock + rand(6, 14);
+                }
+
+                for (let i = meteors.length - 1; i >= 0; i--) {
+                    const m = meteors[i];
+                    m.life += dt;
+                    m.x += m.vx * dt;
+                    m.y += m.vy * dt;
+
+                    if (m.life > m.max) meteors.splice(i, 1);
+                }
+            }
+
+            function draw() {
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.clearRect(0, 0, W, H);
+
+                drawStars();
+
+                ctx.globalCompositeOperation = "lighter";
+                for (const p of pulsars) drawPulsar(p);
+                for (const sn of supernovae) drawSupernova(sn);
+                for (const m of meteors) drawMeteor(m);
+
+                ctx.globalCompositeOperation = "source-over";
+                for (const bh of blackHoles) drawBlackHole(bh);
+
+                ctx.globalAlpha = 1;
+                ctx.globalCompositeOperation = "source-over";
+            }
+
+            /* ---------- Setup ---------- */
+
+            function applySize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+                W = window.innerWidth;
+                H = window.innerHeight;
+
+                canvas.width = Math.round(W * dpr);
+                canvas.height = Math.round(H * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                buildStars();
+            }
+
+            function seedScene() {
+                const spots = [
+                    [0.12, 0.26],
+                    [0.84, 0.16],
+                    [0.92, 0.70],
+                    [0.32, 0.84]
+                ];
+
+                for (const [fx, fy] of spots) {
+                    pulsars.push(
+                        makePulsar(
+                            fx * W + rand(-40, 40),
+                            fy * H + rand(-40, 40),
+                            0
+                        )
+                    );
+                }
+
+                spawnBlackHole(false);
+            }
+
+            applySize();
+            seedScene();
+
+            let resizeTimer = null;
+
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    applySize();
+                    if (reduced) draw();
+                }, 120);
+            });
+
+            if (reduced) {
+                // Motion-sensitive visitors get a calm, still sky.
+                draw();
+                return;
+            }
+
+            let last = performance.now();
+
+            function loop(now) {
+                const dt = Math.min(0.05, (now - last) / 1000);
+                last = now;
+
+                frameAvg = frameAvg * 0.95 + dt * 0.05;
+
+                // Older machines: quietly lighten the scene
+                if (!lowPower && clock > 4 && frameAvg > 0.036) {
+                    lowPower = true;
+                    buildStars();
+                }
+
+                update(dt);
+                draw();
+                requestAnimationFrame(loop);
+            }
+
+            requestAnimationFrame(loop);
         })();
 
         /* =========================================================
