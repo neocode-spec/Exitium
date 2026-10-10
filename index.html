@@ -1,0 +1,1662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#08090d">
+    <meta name="description" content="Meet Exitium. A new approach to personal AI, built around privacy, independence and control.">
+
+    <title>Exitium — Intelligence Without Limits</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================
+           1. BASIC SETTINGS
+        ========================= */
+
+        :root {
+            --background: #08090d;
+            --surface: #101219;
+            --surface-light: #151923;
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #f5f6fa;
+            --muted: #9399a9;
+            --blue: #8bb8ff;
+            --blue-light: #c1d9ff;
+            --max-width: 1180px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(76, 112, 190, 0.12),
+                    transparent 45%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: min(var(--max-width), calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 110px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 20px;
+            height: 1px;
+            background: var(--blue);
+        }
+
+        .section-title {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.2;
+            letter-spacing: -1.8px;
+            font-weight: 700;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 590px;
+            margin-top: 18px;
+            font-size: 15px;
+        }
+
+        .blue-text {
+            color: var(--blue);
+        }
+
+        /* =========================
+           2. NAVIGATION
+        ========================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(8, 9, 13, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .navbar.scrolled {
+            border-color: var(--border);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            flex-shrink: 0;
+        }
+
+        .moon-logo {
+            position: relative;
+            display: inline-block;
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #b8c6df);
+            box-shadow: 0 0 22px rgba(150, 190, 255, 0.19);
+            overflow: hidden;
+        }
+
+        .moon-logo::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: 10px;
+            top: -4px;
+            border-radius: 50%;
+            background: var(--background);
+        }
+
+        .brand-name {
+            font-family: "Manrope", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2.4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #aeb3c1;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            border: 1px solid rgba(160, 195, 255, 0.35);
+            padding: 9px 17px;
+            border-radius: 7px;
+            color: white !important;
+            background: rgba(115, 160, 235, 0.08);
+        }
+
+        .nav-cta:hover {
+            background: rgba(115, 160, 235, 0.16);
+        }
+
+        .menu-button {
+            display: none;
+            background: transparent;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 7px 11px;
+            cursor: pointer;
+            font-size: 21px;
+        }
+
+        /* =========================
+           3. HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 780px;
+            min-height: min(900px, 100svh);
+            padding: 155px 0 90px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            z-index: -1;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(780px, 100vw);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(86, 123, 205, 0.13),
+                rgba(42, 70, 125, 0.045) 40%,
+                transparent 70%
+            );
+            pointer-events: none;
+        }
+
+        .stars {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #d8e5ff;
+            opacity: 0.45;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.15; }
+            to { opacity: 0.7; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .announcement {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.025);
+            padding: 7px 13px;
+            border-radius: 50px;
+            color: #b7bdcb;
+            font-size: 11px;
+            margin-bottom: 30px;
+        }
+
+        .announcement-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 12px var(--blue);
+        }
+
+        .hero h1 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(43px, 7.5vw, 88px);
+            font-weight: 700;
+            letter-spacing: -5px;
+            line-height: 1.08;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: transparent;
+            background: linear-gradient(
+                100deg,
+                #f6f8ff 10%,
+                #8db9ff 60%,
+                #a8a4ff 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-description {
+            max-width: 560px;
+            margin: 25px auto 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            margin-top: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .button {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 22px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            font-size: 13px;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: #e9f0ff;
+            color: #101521;
+            border-color: #e9f0ff;
+        }
+
+        .button-primary:hover {
+            background: white;
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.035);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-note {
+            color: #72798a;
+            font-size: 11px;
+            margin-top: 22px;
+        }
+
+        /* Decorative moon */
+
+        .hero-moon {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #aebbd5);
+            margin: 0 auto 32px;
+            position: relative;
+            box-shadow:
+                0 0 45px rgba(157, 192, 255, 0.18),
+                0 0 120px rgba(93, 133, 210, 0.08);
+        }
+
+        .hero-moon::after {
+            content: "";
+            position: absolute;
+            width: 67px;
+            height: 67px;
+            top: -10px;
+            left: 25px;
+            border-radius: 50%;
+            background: var(--background);
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(155, 187, 255, 0.2),
+                transparent
+            );
+        }
+
+        /* =========================
+           4. PRODUCT SECTION
+        ========================= */
+
+        .product-section {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 75px;
+            margin-top: 55px;
+        }
+
+        .product-copy h3 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(27px, 3vw, 38px);
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        .product-copy p {
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 23px;
+        }
+
+        .tag {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 11px;
+            color: #c4cbd9;
+        }
+
+        .product-copy .button {
+            margin-top: 27px;
+        }
+
+        .product-visual {
+            min-height: 330px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    rgba(88, 119, 187, 0.14),
+                    transparent 60%
+                ),
+                #0c0e14;
+        }
+
+        .product-visual::before,
+        .product-visual::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 1px solid rgba(155, 186, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .product-visual::after {
+            width: 350px;
+            height: 350px;
+        }
+
+        .product-moon {
+            width: 125px;
+            height: 125px;
+            background: linear-gradient(135deg, #f8faff, #91a8d4);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 65px rgba(130, 164, 235, 0.2);
+        }
+
+        .product-moon::after {
+            content: "";
+            position: absolute;
+            width: 116px;
+            height: 116px;
+            background: #0c0e14;
+            border-radius: 50%;
+            left: 38px;
+            top: -14px;
+        }
+
+        .visual-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: #858da0;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           5. FEATURES
+        ========================= */
+
+        .features-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 35px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 45px;
+        }
+
+        .feature-card {
+            min-height: 225px;
+            padding: 25px;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.035),
+                rgba(255, 255, 255, 0.012)
+            );
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(139, 184, 255, 0.35);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(139, 184, 255, 0.2);
+            background: rgba(139, 184, 255, 0.07);
+            color: var(--blue);
+            border-radius: 8px;
+            font-size: 19px;
+        }
+
+        .feature-card h3 {
+            font-family: "Manrope", sans-serif;
+            font-size: 16px;
+            margin-top: 23px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 9px;
+        }
+
+        /* =========================
+           6. DOWNLOADS
+        ========================= */
+
+        .download-section {
+            padding-top: 45px;
+        }
+
+        .download-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 55px;
+            border: 1px solid rgba(139, 184, 255, 0.19);
+            border-radius: 14px;
+            background:
+                radial-gradient(
+                    ellipse at 100% 0%,
+                    rgba(89, 126, 206, 0.15),
+                    transparent 55%
+                ),
+                #0d1017;
+        }
+
+        .download-panel h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(30px, 4vw, 46px);
+            letter-spacing: -1.8px;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .download-panel > p {
+            max-width: 580px;
+            margin-top: 17px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .release-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 700px;
+            margin-top: 35px;
+        }
+
+        .release-item {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+        }
+
+        .release-item span {
+            display: block;
+            font-size: 10px;
+            color: #858da0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .release-item strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .download-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .download-note {
+            margin-top: 16px;
+            font-size: 11px;
+            color: #777f90;
+        }
+
+        /* =========================
+           7. UPDATES
+        ========================= */
+
+        .updates-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .updates-list {
+            margin-top: 35px;
+            border-top: 1px solid var(--border);
+        }
+
+        .update-row {
+            display: grid;
+            grid-template-columns: 130px 1fr auto;
+            gap: 25px;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .update-date {
+            color: #858da0;
+            font-size: 12px;
+        }
+
+        .update-content h3 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .update-content p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .status {
+            border: 1px solid var(--border);
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-size: 10px;
+            color: #aab3c5;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           8. ABOUT / PRIVACY
+        ========================= */
+
+        .about-section {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.012);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .about-copy p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 18px;
+        }
+
+        .principles {
+            display: grid;
+            gap: 12px;
+        }
+
+        .principle {
+            padding: 20px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .principle-mark {
+            color: var(--blue);
+            font-size: 17px;
+        }
+
+        .principle h3 {
+            font-size: 14px;
+        }
+
+        .principle p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           9. FOOTER
+        ========================= */
+
+        .footer {
+            padding: 50px 0 25px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-brand p {
+            max-width: 300px;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #a0a7b7;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            color: #71798a;
+            font-size: 11px;
+        }
+
+        /* =========================
+           10. ANIMATIONS
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* =========================
+           11. MOBILE RESPONSIVENESS
+        ========================= */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 17px;
+            }
+
+            .product-grid {
+                gap: 35px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                gap: 35px;
+            }
+
+            .download-panel {
+                padding: 38px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                width: min(100% - 32px, var(--max-width));
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .nav-inner {
+                min-height: 68px;
+            }
+
+            .menu-button {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                padding: 20px 24px 25px;
+                background: #0b0d13;
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 0;
+            }
+
+            .nav-links .nav-cta {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .hero {
+                min-height: 750px;
+                min-height: 92svh;
+                padding: 125px 0 85px;
+            }
+
+            .hero h1 {
+                font-size: clamp(42px, 12vw, 65px);
+                letter-spacing: -2.8px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-moon {
+                transform: scale(0.85);
+                margin-bottom: 23px;
+            }
+
+            .announcement {
+                font-size: 10px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .button {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .product-visual {
+                min-height: 270px;
+                grid-row: 1;
+            }
+
+            .features-heading,
+            .updates-header {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                min-height: 190px;
+            }
+
+            .download-section {
+                padding-top: 15px;
+            }
+
+            .download-panel {
+                padding: 27px 21px;
+            }
+
+            .release-info {
+                grid-template-columns: 1fr;
+            }
+
+            .download-actions {
+                flex-direction: column;
+            }
+
+            .download-actions .button {
+                width: 100%;
+            }
+
+            .update-row {
+                grid-template-columns: 1fr auto;
+                gap: 7px 15px;
+            }
+
+            .update-date {
+                grid-column: 1 / -1;
+            }
+
+            .update-content p {
+                max-width: 300px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 18px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+
+            <a href="#home" class="brand" aria-label="Exitium home">
+                <span class="moon-logo" aria-hidden="true"></span>
+                <span class="brand-name">EXITIUM</span>
+            </a>
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navLinks"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a href="#products">Products</a>
+                <a href="#features">Features</a>
+                <a href="#downloads">Downloads</a>
+                <a href="#updates">Updates</a>
+                <a href="#about">About</a>
+                <a href="#downloads" class="nav-cta">Explore Exitium ↗</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+
+            <div class="hero-glow"></div>
+            <div class="stars" id="stars"></div>
+
+            <div class="container">
+                <div class="hero-content">
+
+                    <div class="hero-moon" aria-hidden="true"></div>
+
+                    <div class="announcement">
+                        <span class="announcement-dot"></span>
+                        THE NEXT CHAPTER OF PERSONAL AI
+                    </div>
+
+                    <h1>
+                        Intelligence,
+                        <span>on your terms.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Meet Exitium. An independent approach to personal
+                        artificial intelligence, built around privacy,
+                        practical tools and greater control over your
+                        digital experience.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#products" class="button button-primary">
+                            Explore Exitium <span>↗</span>
+                        </a>
+
+                        <a href="#downloads" class="button button-secondary">
+                            Discover Downloads <span>↓</span>
+                        </a>
+                    </div>
+
+                    <p class="hero-note">
+                        Personal AI. A different direction.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="hero-bottom"></div>
+        </section>
+
+
+        <!-- PRODUCTS -->
+        <section class="section product-section" id="products">
+            <div class="container">
+
+                <span class="section-label">THE PRODUCT</span>
+
+                <h2 class="section-title">
+                    Meet <span class="blue-text">Exitium Nano.</span>
+                </h2>
+
+                <p class="section-description">
+                    A desktop AI experience designed to bring useful
+                    intelligence closer to your own computer.
+                </p>
+
+                <div class="product-grid">
+
+                    <div class="product-copy reveal">
+
+                        <h3>
+                            Your computer.<br>
+                            Your assistant.<br>
+                            <span class="blue-text">Your control.</span>
+                        </h3>
+
+                        <p>
+                            Exitium Nano is being developed as a personal
+                            desktop AI with a focus on local operation,
+                            conversation memory and useful everyday
+                            assistance.
+                        </p>
+
+                        <p>
+                            The goal is straightforward: make AI more
+                            accessible without requiring every interaction
+                            to depend on a remote AI service.
+                        </p>
+
+                        <div class="product-tags">
+                            <span class="tag">Windows</span>
+                            <span class="tag">Local AI</span>
+                            <span class="tag">Desktop</span>
+                        </div>
+
+                        <a href="#downloads" class="button button-secondary">
+                            View release information ↗
+                        </a>
+
+                    </div>
+
+                    <div class="product-visual reveal"
+                         role="img"
+                         aria-label="Abstract moon-inspired Exitium product artwork">
+
+                        <div class="product-moon"></div>
+
+                        <div class="visual-caption">
+                            <span>EXITIUM NANO</span>
+                            <span>PERSONAL AI</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="section" id="features">
+            <div class="container">
+
+                <div class="features-heading">
+                    <div>
+                        <span class="section-label">BUILT WITH PURPOSE</span>
+
+                        <h2 class="section-title">
+                            More than another<br>
+                            <span class="blue-text">AI interface.</span>
+                        </h2>
+                    </div>
+
+                    <p class="section-description">
+                        The principles behind Exitium focus on independence,
+                        usability and giving people more control over how
+                        they use AI.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">◉</div>
+                        <h3>Local-first AI</h3>
+                        <p>
+                            Designed to run AI models locally, helping reduce
+                            dependence on cloud inference for supported tasks.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">⌘</div>
+                        <h3>Conversation memory</h3>
+                        <p>
+                            A personal assistant should be able to retain
+                            useful context instead of making every
+                            conversation feel like the first.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">⌕</div>
+                        <h3>Web search</h3>
+                        <p>
+                            Web search is part of the intended workflow
+                            for finding information beyond the local model.
+                            Internet access is required for online searches.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">⌘</div>
+                        <h3>Practical assistance</h3>
+                        <p>
+                            A foundation for asking questions, exploring
+                            ideas and getting help with everyday
+                            computer-based work.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">◌</div>
+                        <h3>Privacy-conscious design</h3>
+                        <p>
+                            Local processing can keep supported prompts
+                            on your device. Connected services may still
+                            exchange data when you use them.
+                        </p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <div class="feature-icon" aria-hidden="true">↗</div>
+                        <h3>Room to evolve</h3>
+                        <p>
+                            Exitium is a growing project, with future
+                            improvements guided by real testing and
+                            practical needs.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- DOWNLOADS -->
+        <section class="section download-section" id="downloads">
+            <div class="container">
+
+                <div class="download-panel reveal">
+
+                    <span class="section-label">DOWNLOAD CENTRE</span>
+
+                    <h2>
+                        Your next step<br>
+                        starts with <span class="blue-text">Exitium.</span>
+                    </h2>
+
+                    <p>
+                        Find release information for Exitium Nano.
+                        Official download links and release notes should
+                        be published here when the corresponding files
+                        are ready.
+                    </p>
+
+                    <div class="release-info">
+
+                        <div class="release-item">
+                            <span>Product</span>
+                            <strong>Exitium Nano</strong>
+                        </div>
+
+                        <div class="release-item">
+                            <span>Platform</span>
+                            <strong>Windows 10 / 11</strong>
+                        </div>
+
+                        <div class="release-item">
+                            <span>Release status</span>
+                            <strong>Verify before publishing</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="download-actions">
+                        <a href="#updates" class="button button-primary">
+                            View release updates ↗
+                        </a>
+
+                        <a href="#about" class="button button-secondary">
+                            About the project
+                        </a>
+                    </div>
+
+                    <p class="download-note">
+                        No installer is linked on this page yet.
+                        Check the official release information before
+                        installing any software.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- UPDATES -->
+        <section class="section" id="updates">
+            <div class="container">
+
+                <div class="updates-header">
+                    <div>
+                        <span class="section-label">PROJECT JOURNAL</span>
+
+                        <h2 class="section-title">
+                            Progress, not promises.
+                        </h2>
+
+                        <p class="section-description">
+                            Follow the development of the Exitium project
+                            and its products.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="updates-list">
+
+                    <article class="update-row">
+                        <span class="update-date">PROJECT</span>
+
+                        <div class="update-content">
+                            <h3>Exitium Nano</h3>
+                            <p>
+                                Development focused on a personal
+                                Windows AI experience.
+                            </p>
+                        </div>
+
+                        <span class="status">Project</span>
+                    </article>
+
+                    <article class="update-row">
+                        <span class="update-date">ROADMAP</span>
+
+                        <div class="update-content">
+                            <h3>Future improvements</h3>
+                            <p>
+                                Further development depends on testing,
+                                stability and verified release readiness.
+                            </p>
+                        </div>
+
+                        <span class="status">Planned</span>
+                    </article>
+
+                    <article class="update-row">
+                        <span class="update-date">WEBSITE</span>
+
+                        <div class="update-content">
+                            <h3>Official Exitium website</h3>
+                            <p>
+                                A central place for product information,
+                                downloads and project news.
+                            </p>
+                        </div>
+
+                        <span class="status">Website</span>
+                    </article>
+
+                </div>
+
+                <p class="download-note">
+                    These are general project entries, not dated release
+                    announcements. Add verified dates and release notes
+                    as development progresses.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT AND PRIVACY -->
+        <section class="section about-section" id="about">
+            <div class="container">
+
+                <div class="about-grid">
+
+                    <div class="about-copy reveal">
+
+                        <span class="section-label">THE THINKING</span>
+
+                        <h2 class="section-title">
+                            Technology should<br>
+                            work <span class="blue-text">for you.</span>
+                        </h2>
+
+                        <p>
+                            Exitium is a technology project exploring a
+                            more independent approach to personal AI.
+                            It starts with desktop software and a simple
+                            idea: useful technology should be practical,
+                            understandable and designed with its users
+                            in mind.
+                        </p>
+
+                        <p>
+                            The project will evolve through implementation,
+                            testing and improvements rather than promises
+                            about features that do not exist yet.
+                        </p>
+
+                    </div>
+
+                    <div class="principles reveal">
+
+                        <div class="principle">
+                            <span class="principle-mark">◈</span>
+                            <div>
+                                <h3>Privacy matters</h3>
+                                <p>
+                                    Be clear about what runs locally,
+                                    what connects to the internet and
+                                    what information is transmitted.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="principle">
+                            <span class="principle-mark">◈</span>
+                            <div>
+                                <h3>Honest product information</h3>
+                                <p>
+                                    Publish verified features, real
+                                    release information and working
+                                    download links.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="principle">
+                            <span class="principle-mark">◈</span>
+                            <div>
+                                <h3>Built to improve</h3>
+                                <p>
+                                    Focus on usability, stability and
+                                    responsible development.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <a href="#home" class="brand">
+                        <span class="moon-logo" aria-hidden="true"></span>
+                        <span class="brand-name">EXITIUM</span>
+                    </a>
+
+                    <p>
+                        A different direction for personal AI.
+                        Built with independence, privacy and purpose in mind.
+                    </p>
+                </div>
+
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="#products">Products</a>
+                    <a href="#downloads">Downloads</a>
+                    <a href="#updates">Updates</a>
+                    <a href="#about">About</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="terms.html">Terms</a>
+                </nav>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    © <span id="year"></span> Exitium. All rights reserved.
+                </span>
+
+                <span>
+                    Designed for a more independent AI experience.
+                </span>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+        // =========================
+        // 1. CURRENT YEAR
+        // =========================
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        // =========================
+        // 2. NAVBAR SCROLL EFFECT
+        // =========================
+
+        const navbar = document.getElementById("navbar");
+
+        function updateNavbar() {
+            navbar.classList.toggle("scrolled", window.scrollY > 20);
+        }
+
+        window.addEventListener("scroll", updateNavbar, {
+            passive: true
+        });
+
+        updateNavbar();
+
+
+        // =========================
+        // 3. MOBILE MENU
+        // =========================
+
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", function () {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+                menuButton.textContent = "☰";
+            });
+        });
+
+
+        // =========================
+        // 4. SUBTLE BACKGROUND STARS
+        // =========================
+
+        const starsContainer = document.getElementById("stars");
+        const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        if (!reducedMotion) {
+            for (let i = 0; i < 65; i++) {
+                const star = document.createElement("span");
+
+                star.className = "star";
+                star.style.left = Math.random() * 100 + "%";
+                star.style.top = Math.random() * 100 + "%";
+                star.style.animationDelay = Math.random() * 4 + "s";
+                star.style.animationDuration =
+                    (3 + Math.random() * 4) + "s";
+
+                starsContainer.appendChild(star);
+            }
+        }
+
+
+        // =========================
+        // 5. SCROLL REVEAL
+        // =========================
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window && !reducedMotion) {
+            const observer = new IntersectionObserver(
+                function (entries, currentObserver) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            currentObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+            revealElements.forEach(function (element) {
+                observer.observe(element);
+            });
+        } else {
+            revealElements.forEach(function (element) {
+                element.classList.add("visible");
+            });
+        }
+    </script>
+
+</body>
+</html>
