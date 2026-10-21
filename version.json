@@ -1,7 +1,17 @@
-{
-  "version": "1.1.0",
-  "changelog": "First public build of Exitium Nano 2 Xtract. Offline chat with local memory, optional web search, and a separate 1.5 GB model folder so future updates stay small.",
-  "url": "https://github.com/neocode-spec/Exitium/releases/download/v1.1.0/Exitium-1.1.0.zip",
-  "size_mb": 1520,
-  "model_update": false
-}
+NEW — Agentic Nano: Exitium can now act on your PC.
+
+• Open apps — try: open notepad, open discord
+• Open folders — try: open downloads
+• Find files — try: find screenshot
+
+All of it is instant and offline. The AI never chooses what runs,
+so it cannot invent a path or delete anything.
+
+ALSO NEW
+• Said honestly when a question is about exact specifications,
+  instead of inventing numbers
+• Fixed: Check for Updates no longer reports a false network error
+
+HOW TO UPDATE
+Download Exitium.exe (76 MB) and replace your old one.
+Your models folder stays untouched — nothing else to download.
