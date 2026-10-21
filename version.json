@@ -1,7 +1,1 @@
-{
-  "version": "1.2.0",
-  "changelog": "NEW — Agentic Nano: open apps, open folders, find files.\n\nAlso: honest answers on specifications, and a fixed update checker.",
-  "url": "https://github.com/neocode-spec/Exitium/releases/download/v1.1.0/Exitium.exe",
-  "size_mb": 76,
-  "model_update": false
-}
+{"version":"1.2.0","changelog":"Agentic Nano: open apps, folders and find files. Also: honest answers on specifications, and a fixed update checker.","url":"https://github.com/neocode-spec/Exitium/releases/download/v1.1.0/Exitium.exe","size_mb":76,"model_update":false}
