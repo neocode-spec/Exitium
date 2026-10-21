@@ -2245,6 +2245,7 @@
                 <a href="#products">Products</a>
                 <a href="#xtract">Xtract</a>
                 <a href="#stable">Stable</a>
+                <a href="#agentic">Agentic</a>
                 <a href="#privacy">Privacy</a>
                 <a href="#faq">FAQ</a>
                 <a class="nav-cta" href="#downloads">Release status ↗</a>
@@ -2610,8 +2611,8 @@
                         </a>
 
                         <p class="product-footnote">
-                            Target version: v1.0.0. Public download not
-                            available from this page yet.
+                            Version 1.1.0 is available from the release centre.
+                            Windows 10/11, 64-bit.
                         </p>
                     </article>
 
@@ -2987,8 +2988,8 @@
                                 <td>Release status</td>
                                 <td>
                                     <span class="table-status">
-                                        <span class="status-dot"></span>
-                                        Preparing release
+                                        <span class="status-dot green"></span>
+                                        v1.1.0 available
                                     </span>
                                 </td>
                                 <td>
@@ -3007,7 +3008,7 @@
 
                             <tr>
                                 <td>Public installer</td>
-                                <td>Not linked on this page</td>
+                                <td>Available — GitHub Releases</td>
                                 <td>Not available</td>
                             </tr>
 
@@ -3170,6 +3171,225 @@
                     every function is included in every edition. The final
                     Xtract feature list should distinguish tested features
                     from planned ones.
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- =====================================================
+             AGENTIC NANO
+             Planned edition: performs small, validated desktop
+             actions (open apps, folders, files, find by name).
+             ===================================================== -->
+        <section class="section" id="agentic">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="eyebrow">Planned edition · Agentic Nano</span>
+
+                    <h2>
+                        Not only answers.<br>
+                        <span class="gradient-text">Small, careful actions.</span>
+                    </h2>
+
+                    <p>
+                        Agentic Nano is the planned direction for an Exitium
+                        edition that can carry out concrete desktop tasks
+                        instead of only describing them: opening an
+                        application, opening a folder, locating a file you
+                        half-remember. It uses the same local model, on the
+                        same computer, and it asks before anything that
+                        changes your files.
+                    </p>
+                </div>
+
+                <div class="xtract-banner panel reveal">
+                    <div class="xtract-copy">
+                        <span class="pill">
+                            <span class="status-dot"></span>
+                            In development — not in the current build
+                        </span>
+
+                        <h3>
+                            The conversation stays in the app.
+                            The actions happen on your PC.
+                        </h3>
+
+                        <p>
+                            A request such as “open my Downloads folder” or
+                            “find the invoice I saved last month” is currently
+                            something you do by hand. Agentic Nano is intended
+                            to take care of that small piece of work while you
+                            stay in the conversation.
+                        </p>
+
+                        <p>
+                            The design keeps the AI's role narrow. The
+                            application — not the model — decides which
+                            actions exist, validates the paths, and performs
+                            the operation. The model helps understand the
+                            request and explain the result. That division is
+                            deliberate: a compact model should not be trusted
+                            to invent file paths or run unchecked commands.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a class="button button-secondary" href="#roadmap">
+                                See the roadmap
+                            </a>
+                            <a class="button button-secondary" href="#downloads">
+                                Current release
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="xtract-visual" aria-hidden="true">
+                        <div class="xtract-core">AN</div>
+                    </div>
+                </div>
+
+                <div class="capability-grid">
+                    <article class="capability panel reveal">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.7">
+                                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                                <path d="M3 9h18M8 4v5"></path>
+                            </svg>
+                        </div>
+
+                        <h3>Open applications</h3>
+
+                        <p>
+                            Ask for an installed app by name and have it
+                            launched, instead of opening the Start menu and
+                            searching yourself. Limited to applications the
+                            system already knows about.
+                        </p>
+                    </article>
+
+                    <article class="capability panel reveal delay-one">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.7">
+                                <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            </svg>
+                        </div>
+
+                        <h3>Open folders and files</h3>
+
+                        <p>
+                            “Open my Documents”, “open that PDF”. File Explorer
+                            or the default application opens at the right
+                            place, without you navigating there first.
+                        </p>
+                    </article>
+
+                    <article class="capability panel reveal delay-two">
+                        <div class="icon-box" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.7">
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <path d="m16 16 4 4M8 11h6"></path>
+                            </svg>
+                        </div>
+
+                        <h3>Find a file by description</h3>
+
+                        <p>
+                            A local index of the folders you allow makes
+                            searches fast and offline. It is a searchable
+                            list of your own files, not a copy of their
+                            contents sent anywhere.
+                        </p>
+                    </article>
+                </div>
+
+                <article class="flow-panel panel reveal">
+                    <h3>How a request would be handled</h3>
+
+                    <p>
+                        The sequence below is the intended design. Each step
+                        exists to keep a small model from acting beyond what
+                        it can safely understand.
+                    </p>
+
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <span class="flow-number">01</span>
+                            <strong>You ask in plain language</strong>
+                            <p>
+                                No commands or syntax. The request goes to
+                                the same local chat you already use.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">02</span>
+                            <strong>The app matches an action</strong>
+                            <p>
+                                A fixed, small set of supported actions is
+                                checked against your request. Nothing outside
+                                that set can be triggered.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">03</span>
+                            <strong>Paths are validated</strong>
+                            <p>
+                                The application confirms the target exists
+                                and sits inside an allowed location before
+                                doing anything.
+                            </p>
+                        </div>
+
+                        <div class="flow-step">
+                            <span class="flow-number">04</span>
+                            <strong>You see the result</strong>
+                            <p>
+                                The action is reported in the conversation in
+                                plain words, including when it could not be
+                                completed.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="definition-panel panel reveal">
+                    <h3>What Agentic Nano will not do</h3>
+
+                    <p>
+                        It will not scan your entire drive without permission,
+                        run arbitrary shell commands, delete or move files
+                        without a confirmation step, control other people's
+                        accounts, or work through a long chain of steps
+                        unattended. A compact model is unreliable at extended
+                        planning, and the design reflects that limitation
+                        instead of hiding it.
+                    </p>
+                </div>
+
+                <div class="definition-panel panel reveal">
+                    <h3>Why this belongs in a local-first product</h3>
+
+                    <p>
+                        File paths, folder names, and document titles describe
+                        a person's life. Keeping the matching and the index on
+                        the same computer is the point: the assistant can know
+                        where things are without that map being uploaded to a
+                        service. Allowing a folder for indexing would remain
+                        your choice.
+                    </p>
+                </div>
+
+                <div class="local-note reveal">
+                    <strong>Release status:</strong>
+                    Agentic Nano is a planned edition. The current public
+                    build is a local chat assistant and does not perform
+                    desktop actions yet. The capabilities above describe the
+                    intended design, not shipped behaviour, and will be
+                    replaced by release notes when the edition is available.
                 </div>
             </div>
         </section>
@@ -3541,11 +3761,11 @@
                     </h2>
 
                     <p>
-                        This is where confirmed installers and release
-                        notes will appear. The current page does not
-                        contain a verified public download URL, so it
-                        will not pretend that a working installer is
-                        available.
+                        Exitium Nano 2 Xtract v1.1.0 is available now. Download
+                        the package, extract it, and run Exitium.exe. The
+                        application and the AI model ship together in one
+                        archive, so a fresh install works offline after
+                        extraction.
                     </p>
                 </div>
 
@@ -3553,15 +3773,14 @@
                     <div class="release-header">
                         <div>
                             <span class="pill">
-                                <span class="status-dot"></span>
-                                Preparing release
+                                <span class="status-dot green"></span>
+                                Available now
                             </span>
 
-                            <h3>Exitium Nano 2 Xtract v1.0.0</h3>
+                            <h3>Exitium Nano 2 Xtract v1.1.0</h3>
 
                             <p>
-                                The current target for the first packaged
-                                Xtract release.
+                                First public build. Windows desktop, free.
                             </p>
                         </div>
 
@@ -3570,71 +3789,84 @@
 
                     <div class="release-details">
                         <div class="release-detail">
-                            <span>Installer filename</span>
-                            <strong>Exitiumnanoextract.exe</strong>
+                            <span>Package filename</span>
+                            <strong>Exitium-1.1.0.zip</strong>
                         </div>
 
                         <div class="release-detail">
-                            <span>Estimated download size</span>
-                            <strong>Approximately 1.5 GB</strong>
+                            <span>Download size</span>
+                            <strong>1.52 GB</strong>
                         </div>
 
                         <div class="release-detail">
                             <span>Availability</span>
-                            <strong>Not publicly linked yet</strong>
+                            <strong>Available — GitHub Releases</strong>
                         </div>
 
                         <div class="release-detail">
                             <span>Target platform</span>
-                            <strong>Windows desktop</strong>
+                            <strong>Windows 10 / 11, 64-bit</strong>
                         </div>
 
                         <div class="release-detail">
-                            <span>Price intention</span>
+                            <span>Price</span>
                             <strong>Free</strong>
                         </div>
 
                         <div class="release-detail">
                             <span>Distribution</span>
-                            <strong>Release link to be published</strong>
+                            <strong>GitHub Releases (v1.1.0)</strong>
                         </div>
                     </div>
 
-                    <div class="definition-panel panel" style="margin-top: 23px;">
-                        <h3>Why is there no download button?</h3>
+                    <div class="hero-actions" style="margin-top: 26px;">
+                        <a class="button button-primary"
+                            href="https://github.com/neocode-spec/Exitium/releases/download/v1.1.0/Exitium-1.1.0.zip">
+                            Download Exitium 1.1.0
+                            <span aria-hidden="true">↓</span>
+                        </a>
 
-                        <p>
-                            A download button is only useful when it leads
-                            to the actual release. The public installer
-                            link has not been supplied for this website.
-                            Before release, the package still needs
-                            appropriate checks, and portability across
-                            different computers and USB setups needs
-                            validation. This page will need the verified
-                            release URL before it can offer a real download.
-                        </p>
-                    </div>
-
-                    <div class="hero-actions">
                         <a class="button button-secondary" href="#roadmap">
                             View release roadmap
                         </a>
-                        <a class="button button-secondary" href="#hardware">
-                            Check hardware information
-                        </a>
+                    </div>
+
+                    <div class="definition-panel panel" style="margin-top: 23px;">
+                        <h3>How to install</h3>
+
+                        <p>
+                            1. Download <strong>Exitium-1.1.0.zip</strong>
+                            (1.52 GB).
+                        </p>
+                        <p>
+                            2. Right-click the file and choose
+                            <strong>Extract All</strong>.
+                        </p>
+                        <p>
+                            3. Open the extracted folder and run
+                            <strong>Exitium.exe</strong>. The
+                            <strong>models</strong> folder must stay next to
+                            the executable.
+                        </p>
+
+                        <p>
+                            Windows may show an unrecognised-app warning
+                            because this build is not code-signed. Choose
+                            <strong>More info</strong>, then
+                            <strong>Run anyway</strong>.
+                        </p>
                     </div>
                 </article>
 
                 <div class="definition-panel panel reveal">
-                    <h3>About the estimated size</h3>
+                    <h3>About the download size</h3>
 
                     <p>
-                        The approximate 1.5 GB figure is a planning
-                        estimate, not a verified final installer size.
-                        The actual download size may change as packaging
-                        and dependencies are finalised. The release page
-                        should be updated with the actual file size
-                        before distribution.
+                        The 1.52 GB archive contains the application and the
+                        local AI model together. The model is the larger part
+                        and only needs to be downloaded once. Future
+                        application updates are considerably smaller, because
+                        the model is no longer bundled into every release.
                     </p>
                 </div>
             </div>
@@ -3737,6 +3969,20 @@
                                 </p>
                             </div>
                         </article>
+
+                        <article class="roadmap-item">
+                            <span class="roadmap-marker">07</span>
+                            <div>
+                                <h4>Develop Agentic Nano</h4>
+                                <p>
+                                    Build and test a small set of desktop
+                                    actions — opening apps, folders and
+                                    files — with path validation and
+                                    confirmation before anything changes
+                                    on disk.
+                                </p>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
@@ -3803,8 +4049,9 @@
                                     Windows application.
                                 </p>
                                 <p>
-                                    Its public installer has not been
-                                    linked on this page yet.
+                                    Version 1.1.0 is published on GitHub
+                                    Releases. See the release centre for
+                                    the download and installation steps.
                                 </p>
                             </div>
                         </details>
@@ -3910,9 +4157,9 @@
                             <div class="faq-answer">
                                 <p>
                                     Xtract and Stable are intended to
-                                    be free. Stable remains a planned
-                                    edition, and Xtract's public release
-                                    link has not yet been provided.
+                                    be free. The current Xtract build,
+                                    v1.1.0, is available now from the
+                                    release centre.
                                 </p>
                             </div>
                         </details>
@@ -3921,12 +4168,17 @@
                             <summary>How do I download the application?</summary>
                             <div class="faq-answer">
                                 <p>
-                                    The release centre will contain the
-                                    actual installer link once it has
-                                    been published. Do not download
-                                    an executable from an unverified
-                                    third-party link claiming to be
-                                    an Exitium release.
+                                    Download the package from the release
+                                    centre on this page, or from the
+                                    GitHub Releases page. It is a
+                                    1.52 GB archive containing the app and
+                                    the local model. Extract it fully
+                                    before running Exitium.exe.
+                                </p>
+                                <p>
+                                    Do not download an executable from an
+                                    unverified third-party link claiming
+                                    to be an Exitium release.
                                 </p>
                             </div>
                         </details>
@@ -4119,6 +4371,7 @@
                     <h4>Products</h4>
                     <a href="#xtract">Nano 2 Xtract</a>
                     <a href="#stable">Nano Stable</a>
+                    <a href="#agentic">Agentic Nano</a>
                     <a href="#comparison">Compare editions</a>
                     <a href="#roadmap">Roadmap</a>
                 </div>
