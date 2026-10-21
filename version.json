@@ -1,0 +1,7 @@
+{
+  "version": "1.1.0",
+  "changelog": "First public build of Exitium Nano 2 Xtract. Offline chat with local memory, optional web search, and a separate 1.5 GB model folder so future updates stay small.",
+  "url": "https://github.com/neocode-spec/Exitium/releases/download/v1.1.0/Exitium-1.1.0.zip",
+  "size_mb": 1520,
+  "model_update": false
+}
